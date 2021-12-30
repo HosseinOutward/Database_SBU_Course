@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>ورود</title>
+    <link rel="shortcut icon" href="favicon.ico"/>
+    <link rel="stylesheet" href="/static/vendors/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/static/vendors/bootstrap/dist/css/bootstrap-rtl.css"/>
+    <link rel="stylesheet" href="/static/vendors/font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/static/assets/css/style.css"/>
+    <style>
+        video {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            z-index: -10;
+            left: 0;
+            opacity: 0.9;
+            color: #f1f1f1;
+        }
+
+    </style>
+</head>
+
+<body class="bg-dark">
+<video autoplay muted loop id="myVideo">
+    <source src="/static/video/12.mp4" type="/static/video/mp4">
+</video>
+<div style="margin:5% auto" class="sufee-login d-flex align-content-center flex-wrap">
+
+    <div class="container">
+        <div class="login-content">
+
+            <div class="login-form">
+                <div class="content-section">
+                <form method="POST">
+                    {% csrf_token %}
+                    <fieldset class="form-group">
+                        <legend class="border-bottom mb-4">Delete patient</legend>
+                        <h2>ARE YOU SURE YOU WANT TO DELET YOUR ACCOUNT "{{ object.username }}"</h2>
+                    </fieldset>
+                    <div class="form-group">
+                        <button class="btn btn-outline-danger" type="submit">Yes, Delete</button>
+                        <a class="btn btn-outline-secondary" href="{% url 'base-panel' %}">Cancel</a>
+                    </div>
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/static/vendors/jquery/dist/jquery.min.js"></script>
+<script src="/static/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/static/assets/js/main.js"></script>
+</body>
+
+</html>

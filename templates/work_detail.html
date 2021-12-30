@@ -1,0 +1,178 @@
+<!doctype html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>جزئیات</title>
+    <link rel="apple-touch-icon" href="apple-icon.png">
+    <link rel="stylesheet" href="/static/vendors/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/vendors/bootstrap/dist/css/bootstrap-rtl.css">
+    <link rel="stylesheet" href="/static/vendors/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/assets/css/style.css">
+</head>
+
+<body class="open">
+<!-- Sidebar -->
+<aside id="left-panel" class="left-panel">
+    <nav class="navbar navbar-expand-sm navbar-default">
+
+        <div class="navbar-header">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu"
+                    aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" href="./"></a>
+            <a class="navbar-brand hidden" href="./"></a>
+        </div>
+
+        <div id="main-menu" class="main-menu collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="/panel"> <i class="menu-icon fa fa-dashboard"></i>داشبورد </a>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </nav>
+</aside>
+<!-- Sidebar -->
+
+<!-- Main-->
+<div id="right-panel" class="right-panel">
+    <!-- Header-->
+    <header id="header" class="header">
+
+        <div class="header-menu">
+
+            <div class="col-sm-12 float-right">
+                <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa-caret-right"
+                                                                   style=" margin-top: 30%;"></i></a>
+                <div class="user-area dropdown float-right">
+                    <a href="/profileUpdate/">
+                        <img class="user-avatar rounded-circle" src="{{UserProfile.image_p.url}}" alt="User Avatar">
+                    </a>
+
+                    <div class="user-menu dropdown-menu">
+                        <a class="nav-link" href="#"><i class="fa fa-user"></i> پروفایل من</a>
+
+                        <a class="nav-link" href="#"><i class="fa fa-bell"></i> اعلان ها <span
+                            class="count f-left">13</span></a>
+
+                        <a class="nav-link" href="#"><i class="fa fa-cog"></i> تنظیمات</a>
+
+                        <a class="nav-link" href="#"><i class="fa fa-power-off"></i> خروج</a>
+                    </div>
+                </div>
+
+                <div class="header-left float-right mr-3">
+                    {{UserProfile.name_p}}
+                </div>
+
+            </div>
+        </div>
+
+    </header>
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == 'success'%}
+                    <script type=text/javascript>toastr.{{ message.tags }}('{{ message }}')</script>
+                {% elif message.tags == 'info' %}
+                    <script type=text/javascript>toastr.{{ message.tags }}('{{ message }}')</script>
+                {% elif message.tags == 'warning' %}
+                    <script type=text/javascript>toastr.{{ message.tags }}('{{ message }}')</script>
+                {% elif message.tags == 'error' %}
+                    <script type=text/javascript>toastr.{{ message.tags }}('{{ message }}')</script>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        <div class="col-xs-12">
+            <div class="card">
+                <div class="card-header">
+                    <strong class="card-title" style="text-align: center">جزئیات</strong>
+                    <br> date posted: {{ object.date_work }} </br>
+                    <br> is the job done: {{ object.done_work }} </br>
+                    <br> has the client paid: {{ object.Paid_work }} </br>
+                    <br> short description: {{ object.name_work }} </br>
+                    <br> full description: {{ object.description_work }} </br>
+                    <br> client ID: {{ object.client_work.id }} </br>
+                    <br> worker ID: {{ object.assigned_work.id }} </br>
+                    <form method="POST">
+                    {% csrf_token %}
+                    {% load crispy_forms_tags %}
+                        {{ form|crispy }}
+                    <br class="form-group">
+                        <button class="btn btn-primary btn-flat" type="submit">submit</button>
+                    </br>
+                    </form>
+                </div>
+            </div>
+            <!-- /.box -->
+        </div>
+
+    </div>
+
+
+</div> <!-- .content -->
+<div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="largeModalLabel">آپلود فایل</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card-body card-block">
+                    <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+
+
+                        <div class="row form-group">
+                            <div class="col col-md-3"><label for="email-input"
+                                                             class=" form-control-label">کلاس</label></div>
+                            <div class="col-12 col-md-9"><input type="email" id="email-input"
+                                                                name="email-input" placeholder="کلاس را وارد کنید"
+                                                                class="form-control">
+                                <small class="help-block form-text">کلاس را وارد کنید</small>
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col col-md-3"><label for="file-input"
+                                                             class=" form-control-label">ارسال فایل</label></div>
+                            <div class="col-12 col-md-9"><input type="file" id="file-input"
+                                                                name="file-input" class="form-control-file"></div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">لغو</button>
+                <button type="button" class="btn btn-primary">تایید</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- Main-->
+
+<script src="/static/vendors/jquery/dist/jquery.min.js"></script>
+<script src="/static/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/static/assets/js/main.js"></script>
+<script src="/static/assets/js/dashboard.js"></script>
+
+
+</body>
+
+</html>
